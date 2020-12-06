@@ -28,6 +28,7 @@ TODO:
     10: add rules for other RPS games (9, 11, 15, 25, 101)
     11: make it MVC
     12: implement classes for players
+    13: save and continue saved game
 
 """
 import random
@@ -308,8 +309,7 @@ def print_outcome(winner: str, winning_rule: str,
         prt_msg(msg, '=')
 
 
-def play_round(rules: str):
-    comp, win_d = get_components_dict(rules)
+def play_round(comp: list, win_d: dict):
 
     print_options(comp)
 
@@ -332,7 +332,9 @@ def play_game():
 
     # 3 - Play round(s):
 
-    play_round(rules)
+    comp, win_d = get_components_dict(rules)
+
+    play_round(comp, win_d)
 
     while True:
         try:
@@ -346,7 +348,7 @@ def play_game():
             print('Please chose YES or NO (Y/N)!')
 
         else:
-            play_round(rules)
+            play_round(comp, win_d)
 
 
 if __name__ == '__main__':
